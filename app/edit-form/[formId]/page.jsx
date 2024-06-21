@@ -8,11 +8,12 @@ import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import FormUi from "../_components/FormUI";
+import Panno from "../_components/Panno";
 
 const EditForm = ({ params }) => {
   const { user } = useUser();
   const router = useRouter();
-  const [jsonForm, setJsonForm] = useState(null); // Initialize to null to handle loading state
+  const [jsonForm, setJsonForm] = useState({});
 
   useEffect(() => {
     if (user) {
@@ -57,7 +58,8 @@ const EditForm = ({ params }) => {
       <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5">
         <div className="p-5 border rounded-lg shadow-md">Controller</div>
         <div className="md:col-span-2 border rounded-lg p-5 h-screen flex items-center justify-center">
-          {jsonForm ? <FormUi jsonForm={jsonForm} /> : <p>Loading...</p>}
+          {jsonForm ? <Panno jsonForm={jsonForm} /> : <p>Loading...</p>}
+          {/* <Panno/> */}
         </div>
       </div>
     </div>
