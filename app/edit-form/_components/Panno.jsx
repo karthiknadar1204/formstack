@@ -29,7 +29,7 @@ const Panno = ({ jsonForm, onFieldUpdate, deleteField }) => {
   return (
     <>
       {flag && (
-        <div className="border p-5 md:w-[600px] rounded-lg">
+        <div className="border p-5 md:w-[600px] rounded-lg" data-theme="dark">
           <h2 className="font-bold text-center text-2xl">
             {jsonForm?.formTitle}
           </h2>

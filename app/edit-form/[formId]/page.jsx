@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Panno from "../_components/Panno";
 import { toast } from "sonner"
+import Controller from "../_components/Controller";
 
 
 const EditForm = ({ params }) => {
@@ -92,7 +93,9 @@ const EditForm = ({ params }) => {
         <ArrowLeft /> Back
       </h2>
       <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="p-5 border rounded-lg shadow-md">Controller</div>
+        <div className="p-5 border rounded-lg shadow-md">
+          <Controller/>
+        </div>
         <div className="md:col-span-2 border rounded-lg p-5 flex items-center justify-center">
           {jsonForm ? (
             <Panno jsonForm={jsonForm} onFieldUpdate={onFieldUpdate} deleteField={deleteField} />
