@@ -14,8 +14,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import FieldEdit from "./FieldEdit";
+import Image from "next/image";
 
-const Panno = ({ jsonForm, onFieldUpdate, deleteField }) => {
+const Panno = ({ jsonForm, onFieldUpdate, deleteField, editable=true }) => {
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Panno = ({ jsonForm, onFieldUpdate, deleteField }) => {
   return (
     <>
       {flag && (
-        <div className="border p-5 md:w-[600px] rounded-lg" data-theme="dark">
+        <div className="border p-5 md:w-[600px] rounded-lg">
           <h2 className="font-bold text-center text-2xl">
             {jsonForm?.formTitle}
           </h2>
@@ -123,14 +124,20 @@ const Panno = ({ jsonForm, onFieldUpdate, deleteField }) => {
               )}
 
               <div>
-                <FieldEdit 
-                  defaultValue={field}
-                  onUpdate={(value) => onFieldUpdate(value, index)}
-                  deleteField={() => deleteField(index)}
-                />
+                {editable &&
+                  <FieldEdit 
+                    defaultValue={field}
+                    onUpdate={(value) => onFieldUpdate(value, index)}
+                    deleteField={() => deleteField(index)}
+                  />
+                }
               </div>
             </div>
           ))}
+                {/* <div className="flex gap-2 items-center bg-black text-white" >
+                  <Image  src={'/next.svg'} width={30} height={30}/>
+                  Developed by Karthik.
+                </div> */}
         </div>
       )}
     </>

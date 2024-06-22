@@ -4,13 +4,14 @@ import { db } from "@/configs";
 import { JsonForms } from "@/configs/schema";
 import { useUser } from "@clerk/nextjs";
 import { and, eq } from "drizzle-orm";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Share2, SquareArrowOutUpRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Panno from "../_components/Panno";
 import { toast } from "sonner"
 import Controller from "../_components/Controller";
-
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const EditForm = ({ params }) => {
   const { user } = useUser();
@@ -18,6 +19,7 @@ const EditForm = ({ params }) => {
   const [jsonForm, setJsonForm] = useState(null);
   const [updateTrigger, setUpdateTrigger] = useState(false);
   const [record, setRecord] = useState(null);
+  const [selectedTheme,setSelectedTheme]=useState('light');
 
   useEffect(() => {
     if (user) {
@@ -86,19 +88,29 @@ const EditForm = ({ params }) => {
 
   return (
     <div className="p-10">
-      <h2
-        className="flex gap-2 items-center my-5 cursor-pointer hover:font-bold"
-        onClick={() => router.back()}
-      >
-        <ArrowLeft /> Back
-      </h2>
+      <div className="flex justify-between items-center" >
+        <h2
+          className="flex gap-2 items-center my-5 cursor-pointer hover:font-bold"
+          onClick={() => router.back()}
+        >
+          <ArrowLeft /> Back
+        </h2>
+        <div className="flex gap-2 my-3" >
+          <Link href={'/aiform/'+record?.id} target="_blank">
+            <Button className="flex gap-2" > <SquareArrowOutUpRight className="h-5 w-5" />Live Preview</Button>
+          </Link>
+          <Button  className="flex gap-2 bg-green-500 hover:bg-green-600"> <Share2 className="h-5 w-5"/>Share</Button>
+        </div>
+      </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-5">
         <div className="p-5 border rounded-lg shadow-md">
           <Controller/>
         </div>
         <div className="md:col-span-2 border rounded-lg p-5 flex items-center justify-center">
           {jsonForm ? (
-            <Panno jsonForm={jsonForm} onFieldUpdate={onFieldUpdate} deleteField={deleteField} />
+            <Panno jsonForm={jsonForm} onFieldUpdate={onFieldUpdate} deleteField={deleteField}
+            //  selectedTheme={selectedTheme}
+             />
           ) : (
             <p>Loading...</p>
           )}
