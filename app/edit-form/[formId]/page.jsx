@@ -35,7 +35,7 @@ const EditForm = ({ params }) => {
         .where(
           and(
             eq(JsonForms.id, params?.formId),
-            eq(JsonForms.createdBy, user?.primaryEmailAddress?.emailAddress)
+            eq(JsonForms.createdBy, user?.primaryEmailAddress?.emailAddress) 
           )
         );
 

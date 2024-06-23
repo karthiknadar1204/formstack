@@ -27,6 +27,7 @@ const LiveAiForm = ({ params }) => {
         setRecord(result[0]);
         setJsonForm(JSON.parse(result[0].jsonform));
       }
+      console.log(record.id);
     } catch (error) {
       console.error("Error fetching or parsing form data:", error);
     }

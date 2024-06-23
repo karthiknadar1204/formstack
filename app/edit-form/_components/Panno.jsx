@@ -20,7 +20,7 @@ import moment from "moment";
 import { toast } from "sonner";
 
 
-const Panno = ({ jsonForm, onFieldUpdate, deleteField, editable = true, formId }) => {
+const Panno = ({ jsonForm, onFieldUpdate, deleteField, editable = true, formId=10 }) => {
   const [flag, setFlag] = useState(false);
   const [formData, setFormData] = useState({});
   const formRef = useRef();
